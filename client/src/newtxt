@@ -1,0 +1,690 @@
+// Welcome to Hamroshop, your one-stop destination for all your online shopping needs. We are a fast-growing ecommerce business that was founded with the aim of making online shopping accessible, affordable, and convenient for everyone.
+
+// At Hamroshop, we believe that shopping online should be a hassle-free experience. That's why we have made it our mission to provide you with the best possible shopping experience by offering a wide range of high-quality products at competitive prices. From fashion and accessories to electronics and home appliances, we have something for everyone.
+
+// We are committed to ensuring that your shopping experience with us is safe, secure, and enjoyable. That's why we use the latest encryption technology to protect your personal and payment information, and we offer a range of payment options to suit your needs.
+
+// Thank you for choosing Hamroshop as your preferred online shopping destination. We look forward to serving you and providing you with an exceptional shopping experience.
+
+// <!-- <NavLink
+//                 to="/login"
+//                 className="btn btn-primary"
+//                 style={{
+//                   marginLeft: "10px",
+//                   borderRadius: "20px",
+//                   transition: "background-color 0.3s ease-in-out",
+//                 }}
+//                 activeStyle={{ backgroundColor: "rgba(0, 0, 0, 0.2)" }}
+//               >
+//                 Sign in
+//               </NavLink> -->
+
+//               import React, { useEffect, useState } from "react";
+// import "./Home.css";
+// import CommonPage from "../commonPages/CommonPage";
+// import HomeImg from "../../images/Food.png";
+// import MetaData from "../layout/MetaData";
+// import axios from "axios";
+// import ProductCard from "./productCard/ProductCard";
+// import Loader from "../layout/loader/Loader";
+
+// const Home = () => {
+//   const [products, setProducts] = useState([]);
+//   const [loading, setLoading] = useState(true);
+//   useEffect(() => {
+//     const cancelToken = axios.CancelToken.source();
+
+//     const fetchProducts = async () => {
+//       try {
+//         const res = await axios.get("http://localhost:5000/api/v1/products", {
+//           cancelToken: cancelToken.token,
+//         });
+
+//         setProducts(res.data.data);
+//         setLoading(false);
+//       } catch (error) {
+//         if (axios.isCancel(error)) {
+//           console.log("axios Request aborted!");
+//         } else {
+//           console.log(error);
+//         }
+//       }
+//     };
+//     fetchProducts();
+
+//     return () => {
+//       cancelToken.cancel();
+//     };
+//   }, []);
+//   return (
+//     <>
+//       <!-- <MetaData title="Hamro Shop" />
+//       <CommonPage
+//         title="Welcome to"
+//         description="that is one-stop destination for all your
+//         online shopping needs. We are a fast-growing E-commerce
+//          business that was founded with the aim of making online
+//           shopping accessible, affordable, and convenient for everyone"
+//         btnHome="Get more info"
+//         homeImg={HomeImg}
+//         visit="/about"
+//       /> -->
+
+//       {loading ? (
+//         <Loader />
+//       ) : (
+//         <>
+//           <div className="container-fluid mb-5">
+//             <div className="row">
+//               <div className="col-10 mx-auto">
+//                 <div className="row gy-4">
+//                   <h3 className="productHeader">Top Picks</h3>
+//                   {products.length > 0 ? (
+//                     products &&
+//                     products.map((product) => (
+//                       <>
+//                         <ProductCard key={product.id} product={product} />
+//                       </>
+//                     ))
+//                   ) : (
+//                     <>
+//                       <div className="my-5">
+//                         <h3 className="text-center">No Data Found</h3>
+//                       </div>
+//                     </>
+//                   )}
+//                 </div>
+//               </div>
+//             </div>
+//           </div>
+//         </>
+//       )}
+//     </>
+//   );
+// };
+
+// import React from "react";
+// import Card from "react-bootstrap/Card";
+// import Tooltip from "react-bootstrap/Tooltip";
+// import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+// import { Link } from "react-router-dom";
+// import ReactStars from "react-rating-stars-component";
+
+// <!-- const ProductCard = ({ product }) => { -->
+//   const options = {
+//     edit: false,
+//     color: "rgba(20,20,20,0.1)",
+//     activeColor: "tomato",
+//     size: window.innerWidth < 600 ? 20 : 25,
+//     value: product.ratings,
+//     isHalf: true,
+//   };
+//   <!-- const renderTooltip = (props) => (
+//     <Tooltip id="button-tooltip" {...props}>
+//       {product.productName}
+//     </Tooltip>
+//   );
+//   const myStyle = {
+//     textDecoration: "none",
+//     color: "gray",
+//   };
+//   return (
+//     <>
+//       <div className="col-md-3 col-10 mx-auto">
+//         <Card>
+//           <Link to={`/product/${product._id}`} style={myStyle}>
+//             <OverlayTrigger
+//               placement="top"
+//               delay={{ show: 250, hide: 400 }}
+//               overlay={renderTooltip}
+//             >
+//               <Card.Img
+//                 variant="top"
+//                 src={product.productImg.url}
+//                 alt="HomeImg"
+//                 style={{
+//                   height: "200px",
+//                   objectFit: "cover",
+//                   transition: "transform 0.2s ease-in-out",
+//                 }}
+//                 className="card-img-top"
+//               />
+//             </OverlayTrigger>
+//             <Card.Body>
+//               <Card.Title style={{ textAlign: "center" }}>
+//                 {product.productName}
+//               </Card.Title>
+//               <Card.Text
+//                 style={{
+//                   textAlign: "center",
+//                   fontWeight: "bold",
+//                   color: "black",
+//                 }}
+//               >
+//                 Rs. {product.price}
+//               </Card.Text>
+//               <div style={{ display: "flex", justifyContent: "center" }}>
+//                 <ReactStars {...options} />
+//               </div>
+//             </Card.Body>
+//           </Link>
+//         </Card>
+//       </div>
+//     </>
+//   );
+// }; -->
+
+// export default ProductCard;
+
+// export default Home;
+
+// import React, { useState, useEffect } from "react";
+// import "./Register.css";
+// import { FiEye, FiEyeOff } from "react-icons/fi";
+// import { Form, Col, Row, InputGroup, Spinner, Button } from "react-bootstrap";
+// import { Link, useNavigate } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { clearError, register } from "../../../redux/features/authSlice";
+// import { toast } from "react-toastify";
+
+// const initialState = {
+//   fullName: "",
+//   mobileNo: "",
+//   email: "",
+//   password: "",
+//   confirmPassword: "",
+// };
+// const Register = () => {
+//   const { loading, error } = useSelector((state) => state.auth);
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+//   const [registerValue, setRegisterValue] = useState(initialState);
+//   const [showPassword, setShowPassword] = useState(false);
+//   const [termsChecked, setTermsChecked] = useState(false);
+//   const [avatar, setAvatar] = useState("");
+//   const [avatarPreview, setAvatarPreview] = useState("");
+
+//   let { fullName, mobileNo, email, password, confirmPassword } = registerValue;
+
+//   const handleInputChange = (e) => {
+//     let { name, value } = e.target;
+//     setRegisterValue({ ...registerValue, [name]: value });
+//   };
+
+//   const handleImageHandler = (e) => {
+
+//     const file = e.target.files[0];
+//     const reader = new FileReader();
+
+//     reader.readAsDataURL(file);
+//     reader.onloadend = () => {
+//       setAvatarPreview(reader.result);
+//       setAvatar(file);
+//     };
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     const myForm = new FormData();
+//     myForm.append("fullName", fullName);
+//     myForm.append("mobileNo", mobileNo);
+//     myForm.append("email", email);
+//     myForm.append("password", password);
+//     myForm.append("confirmPassword", confirmPassword);
+//     myForm.append("file", avatar);
+//     dispatch(register({ myForm, navigate, toast }));
+//   };
+
+//   const handleShowPasswordToggle = () => {
+//     setShowPassword(!showPassword);
+//   };
+
+//   useEffect(() => {
+//     if (error) {
+//       toast.error(error);
+//       dispatch(clearError());
+//     }
+//   }, [dispatch, error]);
+//   return (
+//     <>
+//       <h2 className="text-center" style={{ color: "707B8E" }}>
+//         Create your HamroShop Account
+//       </h2>
+//       <div className="form-container">
+//         <Row>
+//           <Col sm={8}>
+//             <Form onSubmit={handleSubmit}>
+//               <Form.Group controlId="fullName">
+//                 <Form.Label>Full Name</Form.Label>
+//                 <Form.Control
+//                   type="text"
+//                   name="fullName"
+//                   placeholder="Enter fullName"
+//                   value={fullName}
+//                   onChange={handleInputChange}
+//                 />
+//               </Form.Group>
+//               <Form.Group controlId="mobileNo">
+//                 <Form.Label>Mobile No</Form.Label>
+//                 <InputGroup>
+//                   <Form.Control
+//                     type="text"
+//                     name="mobileNo"
+//                     value={mobileNo}
+//                     onChange={handleInputChange}
+//                     placeholder="+977"
+//                   />
+//                 </InputGroup>
+//               </Form.Group>
+//               <Form.Group controlId="email">
+//                 <Form.Label>Email</Form.Label>
+//                 <Form.Control
+//                   type="email"
+//                   name="email"
+//                   placeholder="Enter email"
+//                   value={email}
+//                   onChange={handleInputChange}
+//                 />
+//               </Form.Group>
+//               <Form.Group controlId="password">
+//                 <Form.Label>Password</Form.Label>
+//                 <div className="position-relative">
+//                   <Form.Control
+//                     type={showPassword ? "text" : "password"}
+//                     name="password"
+//                     value={password}
+//                     placeholder="Enter password"
+//                     onChange={handleInputChange}
+//                     style={{ paddingRight: "40px" }}
+//                   />
+//                   <Button
+//                     variant="link"
+//                     onClick={handleShowPasswordToggle}
+//                     className="show-password-toggle position-absolute  top-50 translate-middle-y"
+//                     style={{ right: "10px" }}
+//                   >
+//                     {showPassword ? <FiEyeOff /> : <FiEye />}
+//                   </Button>
+//                   {/* <div
+//                     className="text-center"
+//                     style={{ height: 0, overflow: "hidden" }}
+//                   >
+//                     {password}
+//                   </div> */}
+//                 </div>
+//               </Form.Group>
+//               <Form.Group controlId="Confirm password">
+//                 <Form.Label>Confirm Password</Form.Label>
+//                 <Form.Control
+//                   type="password"
+//                   name="confirmPassword"
+//                   placeholder="Enter confirm password"
+//                   value={confirmPassword}
+//                   onChange={handleInputChange}
+//                 />
+//               </Form.Group>
+//               <div className="form-group form-check my-1">
+//                 <input
+//                   type="checkbox"
+//                   className="form-check-input"
+//                   id="acceptTerms"
+//                   onChange={() => setTermsChecked(!termsChecked)}
+//                 />
+//                 <label
+//                   htmlFor="acceptTerms"
+//                   className="form-check-label"
+//                   style={{
+//                     color: "gray",
+//                     fontWeight: "8px",
+//                     fontSize: "smaller",
+//                   }}
+//                 >
+//                   I hereby accept all the Terms & Conditions of HamroShop.
+//                 </label>
+//               </div>
+//               <button
+//                 className="my-2 btn btn-custom form-control"
+//                 style={{ backgroundColor: "#2D3748", color: "white" }}
+//                 type="submit"
+//                 disabled={!termsChecked}
+//               >
+//                 {loading && <Spinner animation="border" size="sm" />}Register
+//               </button>
+//               <p>
+//                 Already have an account?
+//                 <Link style={{ textDecoration: "none" }} to="/login">
+//                   Log In
+//                 </Link>
+//               </p>
+//             </Form>
+//           </Col>
+
+//           <Col
+//             sm={4}
+//             className="d-flex align-items-center justify-content-center"
+//           >
+//             <div className="image-upload">
+//               <label htmlFor="imgFile" className="image-upload-label">
+//                 {avatarPreview ? (
+//                   <img
+//                     src={avatarPreview}
+//                     alt="profile"
+//                     className="image-preview"
+//                   />
+//                 ) : (
+//                   <span>Select Image</span>
+//                 )}
+//               </label>
+//               <Form.Control
+//                 id="imgFile"
+//                 type="file"
+//                 name="file"
+//                 onChange={handleImageHandler}
+//                 accept="image/*"
+//                 className="image-upload-input"
+//               />
+//             </div>
+//           </Col>
+//         </Row>
+//       </div>
+//     </>
+//   );
+// };
+
+// export default Register;
+
+//jwt decode
+// API.interceptors.request.use((req) => {
+//   const token =
+//     localStorage.getItem("profile") &&
+//     JSON.parse(localStorage.getItem("profile")).token;
+//   if (token) {
+//     try {
+//       const decodedToken = jwt_decode(token);
+//       if (decodedToken.exp < Date.now() / 1000) {
+//         throw new Error("Token has expired");
+//       }
+//       req.headers.Authorization = `Bearer ${token}`;
+//     } catch (error) {
+//       console.error("Error verifying token:", error);
+//     }
+//   }
+//   return req;
+// });
+
+// naving css
+//   style={{
+//                         borderRadius: "50%",
+//                         width: "30px",
+//                         height: "30px",
+//                         objectFit: "cover",
+//                         border: "2px solid #fff",
+//                         boxShadow: "0 0 3px rgba(0, 0, 0, 0.3)",
+
+// import jwt_decode from "jwt-decode";
+// API.interceptors.request.use((req) => {
+//   const token =
+//     localStorage.getItem("profile") &&
+//     JSON.parse(localStorage.getItem("profile")).token;
+//   if (token) {
+//     try {
+//       const decodedToken = jwt_decode(token);
+//       if (decodedToken.exp < Date.now() / 1000) {
+//         throw new Error("token expired");
+//       }
+//       req.headers.Authorization = `Bearer ${token}`;
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   }
+//   return req;
+// });
+
+// API.interceptors.request.use((req) => {
+//   const token =
+//     localStorage.getItem("profile") &&
+//     JSON.parse(localStorage.getItem("profile")).token;
+//   try {
+//     const decodedToken = jwt_decode(token);
+//     if (decodedToken.exp < Date.now() / 1000) {
+//       throw new Error("sessio");
+//     }
+//     req.headers.Authorization = `Bearer ${token}`;
+//   } catch (error) {
+//     console.log(error);
+//   }
+//   return req;
+// });
+
+// another way for removing header in admin
+//  {!window.location.pathname.startsWith("/admin") && <Footer />}
+
+// this is the latest using builder
+// mport { createSlice } from '@reduxjs/toolkit';
+// import { register } from './actions';
+
+// const initialState = {
+//   loading: false,
+//   user: null,
+//   error: null,
+// };
+
+// const authSlice = createSlice({
+//   name: 'auth',
+//   initialState,
+//   reducers: {},
+//   extraReducers: (builder) => {
+//     builder
+//       .addCase(register.pending, (state) => {
+//         state.loading = true;
+//       })
+//       .addCase(register.fulfilled, (state, action) => {
+//         state.loading = false;
+//         state.user = action.payload;
+//       })
+//       .addCase(register.rejected, (state, action) => {
+//         state.loading = false;
+//         state.error = action.payload.message;
+//       });
+//   },
+// });
+
+// export default authSlice.reducer;
+
+//change password
+// import React, { useEffect, useState } from "react";
+// import { Container, Row, Col, Form, Spinner } from "react-bootstrap";
+// import { useDispatch, useSelector } from "react-redux";
+// import { useActionData, useNavigate } from "react-router-dom";
+// import Change from "../../../images/ChangePassword.png";
+// import { toast } from "react-toastify";
+// import { changePassword, clearError } from "../../../redux/features/authSlice";
+// import { isFulfilled } from "@reduxjs/toolkit";
+
+// const initialState = {
+//   oldPassword: "",
+//   newPassword: "",
+//   confirmPassword: "",
+// };
+// const ChangePassword = () => {
+//   const { loading, error } = useSelector((state) => state.auth);
+//   const dispatch = useDispatch();
+//   const navigate = useNavigate();
+//   const [passwordValue, setPasswordValue] = useState(initialState);
+//   const [passwordErrors, setPasswordErrors] = useState({});
+
+//   const { oldPassword, newPassword, confirmPassword } = passwordValue;
+//   const handleChange = (e) => {
+//     let { name, value } = e.target;
+//     setPasswordValue({ ...passwordValue, [name]: value });
+//   };
+
+//   const validateForm = () => {
+//     let newErrors = {};
+//     if (!oldPassword) {
+//       newErrors.oldPassword = "oldPassword is required!";
+//     }
+//     if (!confirmPassword) {
+//       newErrors.confirmPassword = "confirmPassword is required!";
+//     }
+//     if (!newPassword) {
+//       newErrors.newPassword = "newPassword is required!";
+//     } else if (newPassword.length < 8) {
+//       newErrors.newPassword = "password must be 8 characters long!";
+//     } else if (newPassword !== confirmPassword) {
+//       newErrors.confirmPassword = "password must be match!";
+//     }
+
+//     setPasswordErrors(newErrors);
+//     return Object.keys(newErrors).length === 0;
+//   };
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     if (validateForm()) {
+//       if (oldPassword && newPassword && confirmPassword) {
+//         dispatch(changePassword({ passwordValue, navigate, toast }));
+//       }
+//     } else {
+//       toast.error("Invalid input!");
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (error) {
+//       toast.error(error);
+//       dispatch(clearError());
+//     }
+//   }, [dispatch, error]);
+
+//   return (
+//     <Container className="my-5">
+//       <div className="border rounded p-3 change-password-container">
+//         <Row className="justify-content-center">
+//           <Col
+//             md={6}
+//             className="d-flex align-items-center justify-content-center"
+//           >
+//             <img src={Change} alt="Change Pic" className="img-fluid" />
+//           </Col>
+//           <Col md={6}>
+//             <h3
+//               className="change-password-heading"
+//               style={{ color: "#707B8E" }}
+//             >
+//               Change Password
+//             </h3>
+//             <Form onSubmit={handleSubmit}>
+//               <Form.Group controlId="oldPassword">
+//                 <Form.Label>Old Password</Form.Label>
+//                 <Form.Control
+//                   type="password"
+//                   placeholder="Enter old password"
+//                   value={oldPassword}
+//                   name="oldPassword"
+//                   onChange={handleChange}
+//                   className="change-password-input"
+//                 />
+//                 {passwordErrors && (
+//                   <span style={{ color: "red" }}>
+//                     {passwordErrors.oldPassword}
+//                   </span>
+//                 )}
+//               </Form.Group>
+//               <Form.Group controlId="newPassword">
+//                 <Form.Label>New Password</Form.Label>
+//                 <Form.Control
+//                   type="password"
+//                   placeholder="Enter new password"
+//                   value={newPassword}
+//                   name="newPassword"
+//                   onChange={handleChange}
+//                   className="change-password-input"
+//                 />
+//                 {passwordErrors && (
+//                   <span style={{ color: "red" }}>
+//                     {passwordErrors.newPassword}
+//                   </span>
+//                 )}
+//               </Form.Group>
+//               <Form.Group controlId="confirmPassword">
+//                 <Form.Label>Confirm New Password</Form.Label>
+//                 <Form.Control
+//                   type="password"
+//                   placeholder="Confirm new password"
+//                   value={confirmPassword}
+//                   name="confirmPassword"
+//                   onChange={handleChange}
+//                   className="change-password-input"
+//                 />
+//                 {passwordErrors && (
+//                   <span style={{ color: "red" }}>
+//                     {passwordErrors.confirmPassword}
+//                   </span>
+//                 )}
+//               </Form.Group>
+//               <button
+//                 className="my-3 btn btn-custom form-control"
+//                 style={{ backgroundColor: "#2D3748", color: "white" }}
+//                 type="submit"
+//               >
+//                 {loading && <Spinner animation="border" size="sm" />}Change
+//                 password
+//               </button>
+//             </Form>
+//           </Col>
+//         </Row>
+//       </div>
+//     </Container>
+//   );
+// };
+
+// export default ChangePassword;
+
+// citycenter password
+// Ilovesinging726548@*/
+
+// .AllProductCard {
+// box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+// width: calc(
+//   100% / 4 - 2vmax
+// ); /* 4 cards per row with 2vmax gap between them */
+// display: flex;
+// flex-direction: column;
+// text-decoration: none;
+// color: rgb(48, 48, 48);
+// margin: 1vmax;
+// transition: all 0.5s;
+// padding-bottom: 0.5vmax;
+// }
+
+// builder
+//   .addCase(getAllProducts.pending, (state) => {
+//     state.loading = true;
+//   })
+//   .addCase(getAllProducts.fulfilled, (state, action) => {
+//     state.loading = false;
+//     state.products = action.payload.data;
+//     state.resultPerPage = action.payload.resultPerPage;
+//     state.productsCount = action.payload.productsCount;
+//   })
+//   .addCase(getAllProducts.rejected, (state, action) => {
+//     state.loading = false;
+//     state.error = action.payload
+//       ? action.payload.message
+//       : "An error occurred";
+//   })
+//   .addCase(singleProduct.pending, (state) => {
+//     state.loading = true;
+//   })
+//   .addCase(singleProduct.fulfilled, (state, action) => {
+//     state.loading = false;
+//     state.product = action.payload.data;
+//   })
+//   .addCase(singleProduct.rejected, (state, action) => {
+//     state.loading = false;
+//     state.error = action.payload
+//       ? action.payload.message
+//       : "An error occurred";
+//   });
+// },

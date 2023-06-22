@@ -1,0 +1,19 @@
+/* .green {
+  color: green;
+  font-size: 14px;
+}
+.red {
+  color: red;
+  font-size: 14px;
+} */
+
+.total-amount-container {
+  background-color: rgb(141, 141, 239);
+  text-align: center;
+}
+
+.total-amount-container p {
+  color: white;
+  font-size: 24px;
+  padding: 10px;
+}

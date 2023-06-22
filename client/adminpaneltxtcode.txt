@@ -1,0 +1,394 @@
+//AppHeader
+import React from "react";
+import "./AppHeader.css";
+import {
+  MenuFoldOutlined,
+  MenuUnfoldOutlined,
+  BellOutlined,
+  MessageOutlined,
+  DownOutlined,
+} from "@ant-design/icons";
+import { Layout, theme, Dropdown, Menu } from "antd";
+import { Link } from "react-router-dom";
+const { Header, Content } = Layout;
+
+const AppHeader = ({ collapsed, toggleCollapsed }) => {
+  //   const [collapsed, setCollapsed] = useState(false);
+  const {
+    token: { colorBgContainer },
+  } = theme.useToken();
+
+  const menu = (
+    <Menu>
+      <Menu.Item>
+        <Link to="/profile">Profile</Link>
+      </Menu.Item>
+      <Menu.Item>
+        <Link to="/logout">Logout</Link>
+      </Menu.Item>
+    </Menu>
+  );
+
+  return (
+    <>
+      <Layout className="site-layout">
+        <Header
+          className="site-layout-background"
+          style={{ padding: 0, background: colorBgContainer }}
+        >
+          {React.createElement(
+            collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+            {
+              className: "trigger",
+              onClick: toggleCollapsed,
+            }
+          )}
+          <div className="header-actions">
+            <BellOutlined className="icon" />
+            <MessageOutlined className="icon" />
+            <Dropdown overlay={menu}>
+              <div className="user">
+                <div className="circle-image">
+                  <img
+                    height={30}
+                    width={30}
+                    objectFit="cover"
+                    style={{ borderRadius: "50%" }}
+                    src="https://i.pravatar.cc/150?img=1"
+                    alt="User profile"
+                    className="img-fluid"
+                  />
+                </div>
+                <span className="name">John Doe</span>
+                <DownOutlined style={{ marginLeft: "8px" }} />
+              </div>
+            </Dropdown>
+          </div>
+        </Header>
+        <Content
+          style={{
+            margin: "24px 16px",
+            padding: 24,
+            minHeight: 280,
+            background: colorBgContainer,
+          }}
+        ></Content>
+      </Layout>
+    </>
+  );
+};
+
+export default AppHeader;
+
+AppHeader.css
+.header-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-right: 16px;
+}
+
+.icon {
+  margin-left: 16px;
+  margin-top: -4px;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin-left: 16px;
+
+  line-height: 50px;
+}
+.circle-image img {
+  margin-top: 18px;
+}
+
+.circle-image {
+  margin-top: -4px;
+}
+
+.name {
+  margin-left: 8px;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.site-layout .ant-layout-header {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Add this line */
+}
+
+//mainlayout
+import React, { useState } from "react";
+import AdminLogo from "../../../assets/images/AdminLogo.png";
+import { MdGrade, MdDashboard } from "react-icons/md";
+import "./MainLayout.css";
+import { Link } from "react-router-dom";
+import { Layout, Menu } from "antd";
+import { useNavigate } from "react-router-dom";
+import {
+  FaChalkboardTeacher,
+  FaUserGraduate,
+  FaDoorOpen,
+  FaGraduationCap,
+  FaUserTie,
+  FaChalkboard,
+  FaUserCheck,
+  FaCreditCard,
+  FaFilePdf,
+  FaBullhorn,
+  FaTools,
+} from "react-icons/fa";
+import AppHeader from "./AppHeader";
+
+const { Sider } = Layout;
+const MainLayout = () => {
+  const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleCollapsed = () => {
+    setCollapsed(!collapsed);
+  };
+
+  return (
+    <>
+      <Layout>
+        <Sider trigger={null} collapsible collapsed={collapsed}>
+          <div className="logo">
+            <Link to="/">
+              <img src={AdminLogo} alt="Company Logo" className="img-fluid" />
+            </Link>
+          </div>
+          <Menu
+            theme="light"
+            mode="inline"
+            defaultSelectedKeys={[""]}
+            style={{
+              height: "100%",
+            }}
+            onClick={({ key }) => {
+              if (key === "signout") {
+              } else {
+                navigate(key);
+              }
+            }}
+            items={[
+              {
+                key: "",
+                icon: <MdDashboard className="fs-4" />,
+                label: "Dashboard",
+              },
+              {
+                key: "grade",
+                icon: <MdGrade className="fs-4" />,
+                label: "Grade",
+                children: [],
+              },
+              {
+                key: "entrance",
+                icon: <FaDoorOpen className="fs-4" />,
+                label: "Entrance",
+                children: [],
+              },
+              {
+                key: "career",
+                icon: <FaGraduationCap className="fs-4" />,
+                label: "Career",
+                children: [],
+              },
+              {
+                key: "Tuition management",
+                icon: <FaChalkboardTeacher className="fs-4" />,
+                label: "Tuition management",
+                children: [
+                  {
+                    key: "tuition-classes",
+                    icon: <FaUserGraduate className="fs-4" />,
+                    label: "Tuition classes",
+                  },
+                  {
+                    key: "students-list",
+                    icon: <FaUserTie className="fs-4" />,
+                    label: "Students",
+                  },
+                  {
+                    key: "tutors",
+                    icon: <FaChalkboard className="fs-4" />,
+                    label: "Tutors",
+                  },
+                ],
+              },
+              {
+                key: "User management",
+                icon: <FaUserCheck className="fs-4" />,
+                label: "User management",
+                children: [],
+              },
+              {
+                key: "Finance",
+                icon: <FaCreditCard className="fs-4" />,
+                label: "Finance",
+                children: [],
+              },
+              {
+                key: "Report",
+                icon: <FaFilePdf className="fs-4" />,
+                label: "Report",
+                children: [],
+              },
+              {
+                key: "Banner",
+                icon: <FaBullhorn className="fs-4" />,
+                label: "Banner",
+                children: [],
+              },
+              {
+                key: "Setting",
+                icon: <FaTools className="fs-4" />,
+                label: "Setting",
+                children: [],
+              },
+            ]}
+          />
+        </Sider>
+        <AppHeader collapsed={collapsed} toggleCollapsed={toggleCollapsed} />
+      </Layout>
+    </>
+  );
+};
+export default MainLayout;
+mainLayout.css
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #15181b;
+}
+.logo {
+  background-color: #fff;
+  margin: 0;
+  height: 64px;
+}
+
+.logo img {
+  max-height: 100%;
+  max-width: 100%;
+}
+.ant-menu-light .ant-menu-item-selected,
+.ant-menu-light > .ant-menu .ant-menu-item-selected {
+  background-color: rgb(210, 117, 18) !important;
+  color: white !important;
+}
+
+.ant-layout {
+  min-height: 100vh;
+}
+.ant-layout-sider {
+  flex: 0 0 250px !important;
+  max-width: 250px !important;
+  min-width: 250px !important;
+  width: 250px !important;
+}
+.ant-layout-sider-collapsed {
+  flex: 0 0 80px !important;
+  max-width: 80px !important;
+  min-width: 80px !important;
+  width: 80px !important;
+}
+
+.ant-layout-sider-collapsed .lg-logo {
+  display: none;
+}
+.ant-menu-title-content {
+  font-size: 16px;
+}
+.ant-layout-header h5 {
+  line-height: 20px;
+  font-size: 14px;
+}
+.ant-layout-header p {
+  line-height: 20px;
+  font-size: 13px;
+}
+.ant-layout-header div .badge {
+  top: 16px;
+  right: -6px;
+}
+
+main {
+  overflow-y: scroll;
+  height: 85vh;
+  background-color: transparent !important;
+}
+main::-webkit-scrollbar {
+  width: 0px;
+}
+:root {
+  --color-212529: #212529;
+  --color-ffd333: #ffd333;
+  --color-47ad24: #47ad24;
+  --color-e52e2e: #e52e2e;
+  --color-828599: #828599;
+  --color-3d464d: #ed464d;
+  --color-c3d4da: #ced4da;
+}
+.form-control {
+  box-shadow: none;
+  border-color: var(--color-c3d4da);
+}
+.title {
+  font-size: 28px;
+}
+.sub-title {
+  font: 24px;
+}
+.desc {
+  font: 14px;
+  color: var(--color-828599);
+}
+
+lazy loading fallback in app.justify
+import React, { lazy, Suspense } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import PagenotFound from "./pages/PagenotFound";
+
+const MainLayout = lazy(() => import("./components/admin/sidebar/MainLayout"));
+const Dashboard = lazy(() => import("./components/admin/dashboard/Dashboard"));
+
+function App() {
+  return (
+    <>
+      <Router>
+        <Routes>
+          <Route path="*" element={<PagenotFound />} />
+
+          {/* for admin dashboard routes*/}
+          <Route path="/" element={
+            <Suspense fallback={<div>Loading...</div>}>
+              <MainLayout />
+            </Suspense>
+          }>
+            <Route index element={
+              <Suspense fallback={<div>Loading...</div>}>
+                <Dashboard />
+              </Suspense>
+            } />
+          </Route>
+        </Routes>
+      </Router>
+    </>
+  );
+}
+
+export default App;

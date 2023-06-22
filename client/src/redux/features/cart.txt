@@ -1,0 +1,108 @@
+import { createSlice } from "@reduxjs/toolkit";
+
+const CART_KEY = "cart";
+
+const getCartFromStorage = () => {
+  const cart = localStorage.getItem(CART_KEY);
+  const shippingInfo = JSON.parse(localStorage.getItem("shippingInfo"));
+  if (cart) {
+    return { items: JSON.parse(cart), shippingInfo };
+  }
+  return { items: [], shippingInfo: null };
+};
+
+const saveCartToStorage = (cart) => {
+  localStorage.setItem(CART_KEY, JSON.stringify(cart));
+};
+
+const cartSlice = createSlice({
+  name: "cart",
+  initialState: {
+    items: getCartFromStorage().items,
+    shippingInfo: null, // Initialize shippingInfo to null
+    isLoggedIn: false, // Add isLoggedIn state
+  },
+  reducers: {
+    addItem(state, action) {
+      if (!state.isLoggedIn) {
+        return; // Do not modify the cart if user is not logged in
+      }
+      const { product, quantity } = action.payload;
+      const existingProduct = state.items.find(
+        (item) => item._id === product._id
+      );
+
+      if (!existingProduct) {
+        state.items.push({ ...product, quantity });
+        saveCartToStorage(state.items);
+      }
+    },
+    removeItem(state, action) {
+      if (!state.isLoggedIn) {
+        return; // Do not modify the cart if user is not logged in
+      }
+      const filteredState = state.items.filter(
+        (item) => item._id !== action.payload
+      );
+      saveCartToStorage(filteredState);
+      state.items = filteredState;
+    },
+
+    incrementItem(state, action) {
+      if (!state.isLoggedIn) {
+        return; // Do not modify the cart if user is not logged in
+      }
+      const productIndex = state.items.findIndex(
+        (item) => item._id === action.payload
+      );
+      if (productIndex >= 0) {
+        state.items[productIndex].quantity++;
+        saveCartToStorage(state.items);
+      }
+    },
+    decrementItem(state, action) {
+      if (!state.isLoggedIn) {
+        return; // Do not modify the cart if user is not logged in
+      }
+      const productIndex = state.items.findIndex(
+        (item) => item._id === action.payload
+      );
+      if (productIndex >= 0 && state.items[productIndex].quantity > 1) {
+        state.items[productIndex].quantity--;
+        saveCartToStorage(state.items);
+      }
+    },
+    resetCart(state) {
+      if (!state.isLoggedIn) {
+        return; // Do not modify the cart if user is not logged in
+      }
+      state.items = [];
+      state.shippingInfo = null;
+      saveCartToStorage(state.items);
+    },
+    addShippingInfo(state, action) {
+      state.shippingInfo = action.payload;
+      localStorage.setItem("shippingInfo", JSON.stringify(action.payload));
+    },
+    setLoggedIn(state, action) {
+      state.isLoggedIn = action.payload;
+      if (!action.payload) {
+        // Clear the cart if the user logged out
+        state.items = [];
+        state.shippingInfo = null;
+        saveCartToStorage(state.items);
+      }
+    },
+  },
+});
+
+export const {
+  addItem,
+  removeItem,
+  decrementItem,
+  incrementItem,
+  resetCart,
+  addShippingInfo,
+  setLoggedIn,
+} = cartSlice.actions;
+export default cartSlice.reducer;

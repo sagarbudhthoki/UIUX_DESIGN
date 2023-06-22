@@ -1,0 +1,85 @@
+.allProductsHeading {
+  text-align: center;
+  font-size: 1.4vmax;
+  border-bottom: 1px solid rgba(21, 21, 21, 0.5);
+  width: 20vmax;
+  padding: 1vmax;
+  margin: 5vmax auto;
+  color: rgb(0, 0, 0, 0.7);
+}
+
+.AllProductsContainer {
+  display: flex;
+  margin: 2vmax auto;
+  width: 80vw;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 100%;
+}
+
+.AllProductCard {
+  box-shadow: 0 0 5px rgba(15, 15, 15, 0.26);
+  width: calc(
+    100% / 4 - 2vmax
+  ); /* 4 cards per row with 2vmax gap between them */
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: rgb(48, 48, 48);
+  margin: 1vmax;
+  transition: all 0.5s;
+  padding-bottom: 0.5vmax;
+  height: 28vmax; /* set a fixed height for the card */
+}
+
+.AllProductCard > img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  filter: brightness(100%) contrast(100%) saturate(100%);
+  transition: transform 1.1s;
+}
+
+.AllProductCard:hover > img {
+  transform: scale(1.1);
+}
+
+.AllProductCard > div {
+  margin: 0.5vmax;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.AllProductCard > p {
+  font-size: 1.2vmax;
+  margin: 1vmax 0.5vmax;
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.AllProductCard > span {
+  margin: 0.5vmax;
+  font-size: 1vmax;
+}
+
+@media screen and (max-width: 600px) {
+  .AllProductCard > p {
+    font-size: 1.7vmax;
+  }
+
+  .AllProductCard > div {
+    margin: 0vmax;
+    display: block;
+  }
+
+  .AllProductCard > span {
+    font-size: 1.5vmax;
+  }
+
+  .AllProductCard > div > span {
+    margin: 0 0.5vmax;
+    font: 300 1vmax;
+  }
+}
