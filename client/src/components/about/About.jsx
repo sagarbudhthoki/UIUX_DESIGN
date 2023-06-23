@@ -31,24 +31,17 @@ const About = () => {
         <h1 className="text-center" style={{ color: "#3498db" }}>
           Services
         </h1>
-      </div>
-      <div className="container-fluid my-5">
-        <div className="row">
-          <div className="col-10 mx-auto">
-            <div className="row gy-4">
-              {newData &&
-                newData.map((curValue) => {
-                  return (
-                    <div key={curValue.id}>
-                      <ServiceCard
-                        title={curValue.title}
-                        description={curValue.description}
-                        cardImg={curValue.cardImg}
-                      />
-                    </div>
-                  );
-                })}
-            </div>
+
+        <div className="container my-5">
+          <div className="row">
+            {newData.map((curValue) => (
+              <ServiceCard
+                key={curValue.id}
+                title={curValue.title}
+                description={curValue.description}
+                cardImg={curValue.cardImg}
+              />
+            ))}
           </div>
         </div>
       </div>
