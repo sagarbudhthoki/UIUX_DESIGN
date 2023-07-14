@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import decode from "jwt-decode";
 import { setLogout, setUser } from "../../redux/features/authSlice";
 import { toast } from "react-toastify";
-import { resetCart, setLoggedIn } from "../../redux/features/cartSlice";
+import { setLoggedIn } from "../../redux/features/cartSlice";
 
 const Header = () => {
   const user = JSON.parse(localStorage.getItem("profile"));
