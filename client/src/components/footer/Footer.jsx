@@ -104,7 +104,7 @@ const Footer = () => {
                 </span>
                 <p>
                   <Link to="https://mail.google.com/mail/u/0/#inbox">
-                    dipsapkota325@gmail.com
+                    sagarbudhathoki128@gmail.com
                   </Link>
                 </p>
               </li>
