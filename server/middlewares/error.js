@@ -28,6 +28,11 @@ module.exports = (err, req, res, next) => {
     err = new ErrorHandler(message, 400);
   }
 
+  if(err.name === "ENOTFOUND"){
+    const messaage = "Network Err: Unable to connect the server"
+    err = new ErrorHandler(messaage,400)
+  }
+
   res.status(err.statusCode).json({
     success: false,
     message: err.message,
